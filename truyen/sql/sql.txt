@@ -1,0 +1,31 @@
+SELECT * FROM
+(SELECT st.*,ca.categoryname as categoryname, ca.permalink as capermalink
+FROM stories as st, categories as ca, story_info as si
+WHERE st.category = ca.id AND st.id = si.story) as temp, (SELECT count(*) as cou, story FROM chapter GROUP BY story) as b WHERE b.story = temp.id 
+ORDER BY updatetime 
+DESC LIMIT 50
+
+
+
+SELECT * FROM
+      (SELECT st.*,ca.categoryname as categoryname, ca.permalink as capermalink
+             FROM stories as st, categories as ca, story_info as si
+             WHERE st.category = ca.id AND st.id = si.story) as temp, 
+      (SELECT count(*) as cou, story FROM chapter GROUP BY story) as b, 
+      (SELECT * FROM chapter ORDER BY no DESC LIMIT 1) as c
+WHERE b.story = temp.id AND c.story = temp.id
+ORDER BY updatetime 
+DESC LIMIT 50
+
+
+
+SELECT * FROM chapter 
+WHERE story IN (SELECT * FROM
+      (SELECT st.*,ca.categoryname as categoryname, ca.permalink as capermalink
+             FROM stories as st, categories as ca, story_info as si
+             WHERE st.category = ca.id AND st.id = si.story) as temp, 
+      (SELECT count(*) as cou, story FROM chapter GROUP BY story) as b
+WHERE b.story = temp.id
+ORDER BY updatetime 
+DESC LIMIT 50) as c
+GROUP BY story ORDER BY no DESC
