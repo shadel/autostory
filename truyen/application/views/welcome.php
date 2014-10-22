@@ -1,22 +1,16 @@
-<div id="main-content" class="col-12 col-sm-8 col-lg-8 panel panel-default">
-	  <div class="panel-heading">
-	    Danh sach
-	  </div>
-   <?php $this->load->view('story_list', array('data' => $data, 'page' => $page)); ?>
+<div id="main-content"
+	class="col-12 col-sm-8 col-lg-8 panel panel-default">
+	<div class="panel-heading">Danh sach</div>
+   <?php $this->load->view('story_list', array('story_list' => $story_list, 'page' => $page)); ?>
   	<ul class="pagination">
-  		<?php if($page <= 1){?>
-	  <li class="disabled"><a href="#">&laquo;</a></li>
-	  <?php }else{?>
-	  <li ><a href="/">&laquo;</a></li>
-	  <?php }?>
-	  <?php for($i = 1; $i<= $totalPage; $i++){?>
-	  <li <?php if($i==$page){?>class="active"<?php }?>><a href="/page/<?php  echo $i;?>"><?php echo $i;?></a></li>
-	  <?php }?>
-	  <?php if($page >= $totalPage){?>
-	  <li class="disabled"><a href="#">&raquo;</a></li>
-	  <?php }else{?>
-	  <li ><a href="/page/<?php echo $totalPage; ?>">&raquo;</a></li>
-	  <?php }?>
+  	<?php foreach ($paging as $p){ ?>
+  	<li class="<?php echo $p['class']; ?>"><a
+			href="<?php 
+			if (isset($p['link'])) {
+				echo $p['link'];
+			} else {echo '#';}
+			?>"><?php if ($p['class'] == 'next') {echo '&raquo;';} else if ($p['class'] == 'previous') {echo '&laquo;';} else {echo $p['name'];}?></a></li>
+  	<?php }?>
 	</ul>
-	 </div>
-	 
+</div>
+

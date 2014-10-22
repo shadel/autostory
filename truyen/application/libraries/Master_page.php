@@ -26,8 +26,8 @@ class Master_page
 		$mergeData = array(
 				'category' => 'category',
 				'categoryData' => $categories,
-				'home' => 'http://truyen.com',
-				'exceptImg' => 'http://truyen2.hixx.info/assets/truyen/images/no_image_found_120x180.jpg',
+				'home' => 'http://tubu.test',
+				'exceptImg' => 'http://truyen.hixx.info/assets/truyen/images/no_image_found_120x180.jpg',
 				'sidebar' => 'sidebar',
 				'sidebarData' => '');
 		$this->ci->load->view('master_page',array_merge($mergeData, $data));

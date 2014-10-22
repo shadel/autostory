@@ -16,7 +16,7 @@
     <?php foreach ($categoryData as $cat){?>
       <li <?php if(isset($currentCategory) && strcmp($currentCategory->permalink,$cat->permalink) == 0){ ?>
     	class="active"  
-	<?php  }?> ><a href="<?php echo $home.'/category/'.$cat->permalink;?>"><?php echo $cat->categoryname;?></a></li>
+	<?php  }?> ><a href="<?php echo $home.'/truyen/'.$cat->permalink.'.html';?>"><?php echo $cat->categoryname;?></a></li>
       <?php }?>
     </ul>
   </div><!-- /.navbar-collapse -->

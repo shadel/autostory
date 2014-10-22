@@ -40,16 +40,19 @@
 
 $route['default_controller'] = "welcome";
 $route['404_override'] = '';
-$route['category/(:any)/page/(:num)'] = 'category/page/$1/$2';
-$route['category/(:any)'] = 'category/index/$1';
-$route['page/(:num)'] = 'welcome/page/$1';
-$route['truyen/(:any)/page/(:num)'] = 'story/get_page/$1/$2';
-$route['truyen/(:any)/(:any)'] = 'story/get_chapter/$1/$2';
-$route['truyen/themtruyen'] = 'story/new_story';
-$route['truyen/(:any)'] = 'story/get/$1';
-$route['auto'] = 'crawl/auto';
-$route['crawl/set_story'] = 'crawl/set_story';
-$route['crawl'] = 'crawl/get';
+
+$route['truyen/(:any)/(:num)/(:any)/index(:num).html'] = 'truyen/story/$2/$4';
+// chapter
+$route['truyen/(:any)/(:num)/(:any)/(:any).html'] = 'truyen/chapter/$2';
+// story
+$route['truyen/(:any)/(:num)/(:any).html'] = 'truyen/story/$2';
+// home
+$route['truyen/page'] = 'welcome';
+$route['truyen/page/(:num)'] = 'truyen/home/$1';
+// category
+$route['truyen/(:any).html'] = 'truyen/category/$1';
+$route['truyen/(:any)/page'] = 'truyen/category/$1';
+$route['truyen/(:any)/page/(:num)'] = 'truyen/category/$1/$2';
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
