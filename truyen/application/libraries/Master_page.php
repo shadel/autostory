@@ -26,7 +26,7 @@ class Master_page
 		$mergeData = array(
 				'category' => 'category',
 				'categoryData' => $categories,
-				'home' => 'http://tubu.test',
+				'home' => 'http://tuyetbut.com',
 				'exceptImg' => 'http://truyen.hixx.info/assets/truyen/images/no_image_found_120x180.jpg',
 				'sidebar' => 'sidebar',
 				'sidebarData' => '');

@@ -11,19 +11,18 @@ class Truyen extends CI_Controller
 		$this->load->library('data_api');
 	}
 
-	function index($story_permalink)
+	function index()
 	{
 
-		$this->ci->load->model('stories');
-		$data = $this->ci->stories->get_story_by_permalink();
-		
-		$this->load->view('story', array('story'=>$data));
+		$this->home();
 	}
 	
-	function home($limit)
+	function home($limit = 0)
 	{
 		$contentData = null;
 		$this->ci->load->model('save');
+		
+		$key = $limit;
 		
 		$contentData = $this->get_data('home', $key, null, $limit);
 		

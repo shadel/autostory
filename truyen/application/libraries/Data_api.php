@@ -14,7 +14,7 @@ require_once('simple_html_dom.php');
 class Data_api
 {
 	var $url_target = "truyen.hixx.info";
-	var $url_current = "tubu.test";
+	var $url_current = "tuyetbut.com";
 	
 	var $tmp_url_home = "http://truyen.hixx.info/truyen.html";
 	var $tmp_url_home_paging = "http://truyen.hixx.info/truyen/page/{limit}";
@@ -209,7 +209,14 @@ class Data_api
 		
 		$chapter_list = array();
 		
-		$first_chapter = $rowData->find('.bt_pagination', 0)->next_sibling();
+		$first_chapter = $rowData->find('.bt_pagination', 0);
+		
+		if ($first_chapter != null) {
+			$first_chapter = $first_chapter->next_sibling();
+		} else {
+			$first_chapter = $rowData->find('.danh_sach', 0);
+		}
+		
 		
 		while ($first_chapter->class == 'danh_sach') {
 			array_push($chapter_list, array(
@@ -221,18 +228,23 @@ class Data_api
 		
 		$paging = array();
 		
-		foreach ($rowData->find('.bt_pagination', 0)->find('div') as $item) {
-			$page = array();
-			$page['name'] = $item->plaintext;
-			$page['class'] = $item->class;
+		$pagingNode = $rowData->find('.bt_pagination', 0);
 		
-			$link = $item->find('a');
-			if ($link != null) {
-				$page['link'] = $this->get_link($link[0]->href);
+		if ($pagingNode != null) {
+			foreach ($pagingNode->find('div') as $item) {
+				$page = array();
+				$page['name'] = $item->plaintext;
+				$page['class'] = $item->class;
+			
+				$link = $item->find('a');
+				if ($link != null) {
+					$page['link'] = $this->get_link($link[0]->href);
+				}
+			
+				array_push($paging, $page);
 			}
-		
-			array_push($paging, $page);
 		}
+		
 	
 		$data = array(
 				'story_img' => $story_img,
@@ -278,6 +290,10 @@ class Data_api
 		foreach ($scripts as $script) {
 			if (strpos($script, 'page_next') > 0) {
 				array_push($page_script, $this->get_link($script));
+			} else if (strpos($script, 'arr_image') > 0) {
+				$image_script = str_replace("//", "", $script);
+				$image_script = str_replace("http:", "http://", $image_script);
+				array_push($page_script, $image_script);
 			}
 		}
 		

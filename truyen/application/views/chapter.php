@@ -61,7 +61,7 @@ if (num > 5) num = 5;
 if (num < 1.5) num = 1.5;
 el.style.fontSize = (num + "em");
 	
-	$.cookie('font_size', el.style.fontSize, { expires: 9999, path: '/', domain: 'tubu.test' });
+	$.cookie('font_size', el.style.fontSize, { expires: 9999, path: '/', domain: 'tuyetbut.com' });
 }
 
 function setTextSize(elId, size) {
