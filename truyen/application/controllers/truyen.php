@@ -7,6 +7,7 @@ class Truyen extends CI_Controller
 		parent::__construct();
 		$this->ci =& get_instance();
 		$this->load->helper('url');
+		$this->load->helper('xml');
 		$this->load->library('master_page');
 		$this->load->library('data_api');
 	}
@@ -88,6 +89,7 @@ class Truyen extends CI_Controller
 				case 'category' : $contentData = $this->data_api->get_category($id, $limit); break;
 				case 'story' : $contentData = $this->data_api->get_story($id, $limit); break;
 				case 'chapter' : $contentData = $this->data_api->get_chapter($id); break;
+				case 'rss' : $contentData = $this->data_api->get_rss($id); break;
 			}
 			
 			$this->ci->save->save(array(
@@ -97,6 +99,17 @@ class Truyen extends CI_Controller
 			));
 		}
 		return $contentData;
+	}
+	
+	function rss($rssId) {
+		
+		$key = $rssId;
+		$contentData = $this->get_data('rss', $key, $rssId);
+		header("Content-Type: application/rss+xml");
+		
+		$this->load->view('rss', array(
+			'rss' => $contentData
+		));
 	}
 	
 	

@@ -14,6 +14,7 @@ require_once('simple_html_dom.php');
 class Data_api
 {
 	var $url_target = "truyen.hixx.info";
+	var $url_target_rss = "truyen.hixx.vn";
 	var $url_current = "tuyetbut.com";
 	
 	var $tmp_url_home = "http://truyen.hixx.info/truyen.html";
@@ -23,6 +24,7 @@ class Data_api
 	var $tmp_url_story = "http://truyen.hixx.info/truyen/truyen-kiem-hiep/{id}/Truyen-Kiem.html";
 	var $tmp_url_story_paging = "http://truyen.hixx.info/truyen/truyen-kiem-hiep/{id}/Truyen-Kiem/index{limit}.html";
 	var $tmp_url_chapter = "http://truyen.hixx.info/truyen/truyen-kiem-hiep/{id}/Truyen-Kiem/Chuong-1-Tan-mach-bam-sinh.html";
+	var $tmp_url_rss = "http://truyen.hixx.info/rss/{id}.rss";
 	
 	var $tmp_id = "{id}";
 	var $tmp_limit = "{limit}";
@@ -31,7 +33,8 @@ class Data_api
 			'home' => 0,
 			'category' => 1,
 			'story' => 2,
-			'chapter' => 3);
+			'chapter' => 3,
+			'rss' => 4);
 
 	function __construct()
 	{
@@ -64,6 +67,7 @@ class Data_api
 				}
 				// chapter
 				case 3: return str_replace($this->tmp_id, $id, $this->tmp_url_chapter);
+				case 4: return str_replace($this->tmp_id, $id, $this->tmp_url_rss);
 		}
 	}
 	
@@ -329,6 +333,19 @@ class Data_api
 		$title = $rowData->find('title', 0)->innertext;
 		$data['title'] = $title;
 		return $data;
+	}
+	
+	function get_rss($id) {
+	
+		$url = $this->get_query($this->type['rss'], $id);
+		$rowData = $this->get_data($url);
+	
+		$data = str_replace($this->url_target, $this->url_current, $rowData);
+		
+		$data = str_replace($this->url_target_rss, $this->url_current, $data);
+		
+		return $data;
+	
 	}
 
 }

@@ -7,7 +7,9 @@
 	<?php foreach ($contentData['meta'] as $key => $meta) { ?>
 	<meta name="<?php echo $key;?>" content="<?php echo $meta;?>" />
 	<?php }?>
-
+<link rel="alternate" type="application/rss+xml" title="Đọc truyện online : Truyện kiếm hiệp" href="http://tuyetbut.com/rss/truyen-kiem-hiep.rss">
+<link rel="alternate" type="application/rss+xml" title="Đọc truyện online : Truyện trinh thám" href="http://tuyetbut.com/rss/truyen-trinh-tham.rss">
+<link rel="alternate" type="application/rss+xml" title="Đọc truyện online : Truyện tình cảm" href="http://tuyetbut.com/rss/truyen-tinh-cam.rss">
 	 <link href="/libs/css/bootstrap.min.css" rel="stylesheet" media="screen" >
 	 <link href="/libs/css/custom.css" rel="stylesheet" media="screen" >
 	 <script type="text/javascript" src="/libs/js/jquery.min.js" ></script>

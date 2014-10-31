@@ -54,5 +54,7 @@ $route['truyen/(:any).html'] = 'truyen/category/$1';
 $route['truyen/(:any)/page'] = 'truyen/category/$1';
 $route['truyen/(:any)/page/(:num)'] = 'truyen/category/$1/$2';
 
+$route['rss/(:any).rss'] = 'truyen/rss/$1';
+
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
