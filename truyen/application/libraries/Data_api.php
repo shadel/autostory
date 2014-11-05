@@ -261,7 +261,7 @@ class Data_api
 				'chapter_news' => $chapter_news,
 				'chapter_list' => $chapter_list,
 				'paging' => $paging,
-				'page' => $limit/50 + 1);
+				'page' => $limit == 0 ? 1 : $limit);
 		$data = $this->get_meta($data, $rowData);
 		return $data;
 	}
